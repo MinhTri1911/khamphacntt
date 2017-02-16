@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% include '../includes/head.html' %}
+
+<body data-ng-controller="StarterController" ng-cloak class="ng-cloak" ng-class="state" layout="column">
+    <div id="wrapper">
+    	<div ng-include="'/meanStarter/views/system/header.html'" data-role="navigation">
+    		
+    	</div>
+        
+
+
+
+        <div id="page-wrapper" style="margin-top: 50px">
+
+
+            {% block content %}{% endblock %}
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    {% include '../includes/foot.html' %}
+    {% include '../includes/scripts.html' %}
+
+
+</body>
+
+</html>
+
+
+

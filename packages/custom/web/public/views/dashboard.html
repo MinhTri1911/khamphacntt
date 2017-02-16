@@ -1,0 +1,89 @@
+<div class="container-fluid content" ng-controller="WebController as webctr" ng-init="getAllPost();">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-8">
+				<article ng-repeat="item in posts" >
+					<section class="animated fadeInUp">
+						<img class="bieutuong" src="/bower_components/lib/img/bieutuongpng.png" height="50" width="50" alt="">
+						<div class="header-article">
+							<h1>
+								<a href="">Bài {{$index + 1}}: {{ item.title }}</a>
+							</h1>
+							<h2 >
+								Tác giả: <span class="tacgia"> {{ item.author }} </span> Ngày: {{ item.updated_at | date:'dd/MM/yyyy' }} Series: <span class="series"><a href="#"> {{ item.series[0].name }} </a> </span> View: {{ item.view_count }}
+							</h2>
+						</div>
+					</section>
+					<section class="clearfix animated fadeInUp">
+						<img class="hinhdaidien" src="/bower_components/lib/img/bai1.gif" height="124px" width="125px" alt="">
+						<!--<p class="chitiet">
+							{{ item.content }}
+						</p>-->
+						<ui-codemirror ng-bind="item.content" ui-codemirror-opts="editorOptions"></ui-codemirror> 
+					</section>
+				</article>
+				THỰC HIỆN PHÂN TRANG CÁC BÀI VIẾT
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4">
+				<div class="rightBox animated fadeInUp">
+					<h2 class="headerControls animated fadeInUp">xu hướng
+						<a href="#" id="ctl00_RightBar_TrendingUp1_RssEnabledImageButton" class="headerRss" target="_blank"></a>
+					</h2>
+					<ul class="trendingBox animated fadeInUp cl-effect-1" id="cl-effect-1">
+						<li>
+							<span class="numbers">01</span>
+							<div class="trendingDetail"> <a href="#">Tips For Writing Clean And Concise Code In C#</a>
+							</div>
+						</li>
+						<li>
+							<span class="numbers">02</span>
+							<div class="trendingDetail"> <a href="#">Creating Web API With Repository Pattern And Dependency Injection</a>
+							</div>
+						</li>
+						<li>
+							<span class="numbers">03</span>
+							<div class="trendingDetail"> <a href="#">Web Scraping In C#</a>
+							</div>
+						</li>
+						<li>
+							<span class="numbers">04</span>
+							<div class="trendingDetail"> <a href="#">Transaction In .NET</a>
+							</div>
+						</li>
+						<li>
+							<span class="numbers">05</span>
+							<div class="trendingDetail"> <a href="#">
+				            Developing BookMySeat Application In AngularJS And ASP.NET - BookMySeat Page Layout , Angular Services And Custom Directive - Part Five</a>
+							</div>
+						</li>
+						<li>
+							<span class="numbers">06</span>
+							<div class="trendingDetail"> <a href="#">jQuery Based AJAX ASP.NET MVC Google Maps Web App</a>
+							</div>
+						</li>
+						<li>
+							<span class="numbers">07</span>
+							<div class="trendingDetail"> <a href="#">
+				            Getting Started With Visual Studio 2017 Enterprise RC</a>
+							</div>
+						</li>
+						<li>
+							<span class="numbers">08</span>
+							<div class="trendingDetail"> <a href="#">An Overview Of Polymorphism, Inheritance And Encapsulation In OOP</a>
+							</div>
+						</li>
+						<li>
+							<span class="numbers">09</span>
+							<div class="trendingDetail"> <a href="#">Build Domain Controller With AD Tenants In Azure</a>
+							</div>
+						</li>
+						<li>
+							<span class="numbers">10</span>
+							<div class="trendingDetail"> <a href="#">Introduction To ASP.NET Core, WEB API And Repository Class- Part One </a>
+							</div>
+						</li>
+					</ul>
+					<a href="#" class="viewAllLink">View All <i class="glyphicon glyphicon-chevron-right"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>

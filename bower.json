@@ -1,0 +1,20 @@
+{
+  "name": "mean",
+  "dependencies": {
+    "jquery": "latest",
+    "angular": "1.5.8",
+    "angular-resource": "1.5.8",
+    "angular-cookies": "latest",
+    "angular-mocks": "1.5.8",
+    "angular-route": "1.5.8",
+    "bootstrap": "latest",
+    "angular-bootstrap": "latest",
+    "angular-ui-router": "latest",
+    "web-bootstrap": "./node_modules/meanio/resources/web-bootstrap.js",
+    "angular-ui-select": "latest",
+    "angular-sanitize": "1.5.8",
+    "angular-animate": "1.5.8",
+    "dropzone": "^4.3.0",
+    "ng-tags-input": "^3.1.1"
+  }
+}

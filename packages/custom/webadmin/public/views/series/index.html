@@ -1,0 +1,51 @@
+<div class="page-inner" layout="column" flex data-ng-controller="SeriesController" ng-init="findAll()" >       
+	<div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Tables Page <small>Responsive tables</small>
+            </h1>
+        </div>
+    </div> 
+    <div class="row">
+    	<div class="col-md-12">
+        	<button class="btn btn-primary" ng-click="gotoSeries();">Create Series</button>
+        </div>
+    </div>
+    <br />
+     <!-- /. ROW  -->   
+    <div class="row">
+    <div class="col-md-12"> 
+    	            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                     Advanced Tables
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                    	<table class="table table-bordered table-striped table-actions">
+                      <thead>
+                          <tr>
+                              <th>id</th>
+                              <th>name</th>
+                              <th>category</th>
+                              <th>actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>                                            
+                          <tr ng-repeat="item in listSeries">
+                              <td>{{ item._id }}</td>
+                              <td><strong>{{ item.name }}</strong></td>
+                              <td>{{ item.category_id }}</td>
+                              <td>
+                                  <button ng-click="edit(item);" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
+                                  <button ng-click="delete(item);" class="btn btn-danger btn-rounded btn-sm"><span class="fa fa-times"></span></button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="page-inner" layout="column" flex data-ng-controller="SeriesController">
+	<div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Tables Page <small>Responsive tables</small>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+            <form name="CreateSeries" data-ng-submit="create(series)" class="form-horizontal" >
+                <div class="panel-heading">
+                     Advanced Tables
+                </div>
+                <div class="panel-body">
+
+                  <div class="form-group"  ng-class="{ 'has-error' : CreateSeries.name.$invalid }">
+                      <label class="col-md-3 col-xs-12 control-label">Name</label>
+                      <div class="col-md-6 col-xs-12">                                            
+                          <div class="input-group">
+                              <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                              <input type="text" class="form-control" ng-model="series.name" name="name" required/>
+                          </div>                                            
+                        <span class="help-block" ng-show="CreateSeries.name.$error.required">Vui lòng nhập trường này</span>
+                          
+                      </div>
+                  </div>
+
+                  <div class="form-group" ng-class="{ 'has-error' : CreateSeries.category.$invalid }">
+                      <label class="col-md-3 col-xs-12 control-label">Category</label>
+                      <div class="col-md-6 col-xs-12">                                                                                            
+                          <select class="form-control select" ng-init="findCate()" ng-model="series.category_id" name="category" required>
+                              <option value="" selected>--Please select category--</option>
+                              <option ng-repeat="cate in cates" value="{{ cate._id }}">{{ cate.name }}</option>
+                          </select>
+                          <span class="help-block" ng-show="CreateSeries.category.$error.required">Vui lòng chọn danh mục</span>
+                      </div>
+                  </div>
+
+            	  </div>
+              	<div class="panel-footer">
+              		<div class="col-md-offset-3">
+              			<button type="submit" ng-disabled="CreateSeries.$invalid" class="btn btn-primary">Submit</button>
+              			
+              		</div> 
+                </div>
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>

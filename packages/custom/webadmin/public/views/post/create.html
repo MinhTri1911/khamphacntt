@@ -1,0 +1,147 @@
+<div class="page-inner" layout="column" flex data-ng-controller="PostController">
+	<div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Tables Page <small>Responsive tables</small>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+            <form name="CreatePost" data-ng-submit="create(post)" class="form-horizontal" >
+                <div class="panel-heading">
+                     Advanced Tables
+                </div>
+                <div class="panel-body">                                                                        
+		            <div class="row">  
+		              <div class="form-group">
+		                  <label class="col-md-3 col-xs-12 control-label text-right">Title</label>
+		                  <div class="col-md-6 col-xs-12">                                            
+		                      <div class="input-group">
+		                          <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+		                          <input type="text" class="form-control" ng-model="post.title" required/>
+		                      </div>                                            
+		                      <span class="help-block" ng-show=""></span>
+		                  </div>
+		              </div>
+		            </div>
+		            <div class="row">
+		              <div class="form-group"> 
+		                  <label class="col-md-3 col-xs-12 control-label text-right">Content</label>
+		                  <div class="col-md-6 col-xs-12">                                            
+		                      <textarea  ck-editor md-select-on-focus="" class="form-control" rows="5" ng-model="post.content"></textarea>
+		                  </div>
+		                  
+		              </div>
+		            </div>
+		            <br />
+					<div class="row">
+		              <div class="form-group">
+		                  <label class="col-md-3 col-xs-12 control-label text-right">Keywords</label>
+						  <div class="col-md-6 col-xs-12">
+						  	<input type="text" class="form-control" ng-model="post.keywords" required/>
+						  </div>
+		              </div>
+		            </div>
+
+		            <div class="row">
+		              <div class="form-group">
+		                  <label class="col-md-3 col-xs-12 control-label text-right">Image</label>
+						  <div class="col-md-6 col-xs-12">
+						  	<div class="dropzone" dropzone></div>
+						  </div>
+		              </div>
+		             </div>
+
+					 <div class="row">
+		              <div class="form-group">
+		                  <label class="col-md-3 col-xs-12 control-label text-right">Images</label>
+						  <div class="col-md-6 col-xs-12">
+						  	<div class="dropzone" dropzone-multiple></div>
+		              	  </div>
+		              </div>
+		             </div>
+
+					 <div class="row">
+		              <div class="form-group">
+		                  <label class="col-md-3 col-xs-12 control-label text-right">code</label>
+						  <div class="col-md-6 col-xs-12">
+						  	<textarea class="form-control" ng-model="post.code"></textarea>
+		              	  </div>
+		              </div>
+		             </div>
+
+		            <div class="row">
+		              <div class="form-group">
+		                    <label class="col-md-3 col-xs-12 control-label text-right">Status</label>
+		                    <div class="col-md-6 col-xs-12"> 
+		                      <div class="col-md-4">                                    
+		                          <label class="check"><input ng-model="post.status" ng-checked="true" type="radio" class="iradio" name="iradio" value="show"/> Show</label>
+		                      </div>
+		                      <div class="col-md-4">                                    
+		                          <label class="check"><input ng-model="post.status" ng-checked="false" type="radio" class="iradio" name="iradio" value="hide"/> Hide</label>
+		                      </div>
+		                    </div>
+		               </div>
+		             </div>
+		             <div class="row">  
+		              <div class="form-group">
+		                  <label class="col-md-3 col-xs-12 control-label text-right">Author</label>
+		                  <div class="col-md-6 col-xs-12">                                            
+		                      <div class="input-group">
+		                          <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+		                          <input type="text" class="form-control" ng-model="post.author"/>
+		                      </div>                                            
+		                  </div>
+		              </div>
+		            </div>
+
+					<div class="row">  
+		              <div class="form-group">
+		                  <label class="col-md-3 col-xs-12 control-label text-right">Tags</label>
+		                  <div class="col-md-6 col-xs-12">                                            
+		                		<tags-input ng-model="post.tags"></tags-input>
+		                  </div>
+		              </div>
+		            </div>
+
+		            <div class="row">
+		              <div class="form-group">
+		                  <label class="col-md-3 col-xs-12 control-label text-right">Category</label>
+		                  <div class="col-md-6 col-xs-12">                                                                                            
+		                      <select class="form-control select" ng-init="findCategory()" ng-model="post.category_id">
+		                          <option value="" selected>--Please select category--</option>
+		                          <option ng-repeat="cate in cates" value="{{ cate._id }}">{{ cate.name }}</option>
+		                      </select>
+		                      <span class="help-block">Select box example</span>
+		                  </div>
+		              </div>
+		            </div>
+
+		            <div class="row">
+		              <div class="form-group">
+		                  <label class="col-md-3 col-xs-12 control-label text-right">Series</label>
+		                  <div class="col-md-6 col-xs-12">                                                                                            
+		                      <select class="form-control select" ng-init="findSeries();" ng-model="post.news_series_id">
+		                          <option value="" selected>--Please select series--</option>
+		                          <option ng-repeat="item in series" value="{{ item._id }}">{{ item.name }}</option>
+		                      </select>
+		                      <span class="help-block">Select box example</span>
+		                  </div>
+		              </div>
+		            </div>
+		        </div>
+              	<div class="panel-footer">
+              		<div class="col-md-offset-3">
+              			<button type="submit" ng-disabled="CreatePost.$invalid" class="btn btn-primary">Submit</button>
+              			
+              		</div> 
+                </div>
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>

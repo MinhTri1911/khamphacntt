@@ -1,0 +1,35 @@
+<!-- jQuery Js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="/bower_components/lib/js/jquery.metisMenu.js"></script>
+
+
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="/bower_components/lib/js/dataTables/jquery.dataTables.js"></script>
+    <script src="/bower_components/lib/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+    
+    <!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="/bower_components/lib/js/jquery.smartmenus.js"></script>
+
+    <!-- SmartMenus jQuery Keyboard Addon -->
+    <script type="text/javascript" src="/bower_components/lib/js/keyboard/jquery.smartmenus.keyboard.js"></script>
+
+    <!-- SmartMenus jQuery init -->
+    <script type="text/javascript">
+        $(function() {
+            $('#main-menu-').smartmenus({
+                subMenusSubOffsetX: 1,
+                subMenusSubOffsetY: -8
+            });
+            $('#main-menu-').smartmenus('keyboardSetHotkey', 123, 'shiftKey');
+        });
+    </script>
+
+    <script type="text/javascript" src="/bower_components/lib/js/codemirror.js"></script>
