@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state', '$http',
-  function ($scope, $rootScope, Menus, MeanUser, $state, $http) {
+angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state', '$http', 'getParent', 'getCategoryByParent',
+  function ($scope, $rootScope, Menus, MeanUser, $state, $http, getParent, getCategoryByParent) {
     var vm = this;
 
     vm.menus = {};
@@ -54,13 +54,26 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
       $state.go('home');
     });
 
-    $scope.categories = [];
 
     $scope.getAllCate = function(){
-      $http.get('/api/parent')
+
+      $http.get('/api/parent/notnull')
         .success(function(data){
           $scope.categories = data;
         })
+
+      // getParent.getParent().then(function(response){
+      //   var categories = response;
+
+      //   angular.forEach(categories, function(value, key){
+      //       getCategoryByParent.getCategoryByParent(value._id).then(function(response){
+      //           value.parent.push(response);
+      //       });
+      //   }, this);
+      //   $scope.categories = categories;
+
+      //   console.log($scope.categories);
+      // });
     }
 
     $scope.series = [];

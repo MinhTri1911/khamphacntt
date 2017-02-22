@@ -11,12 +11,15 @@
         }).state('dashboard', {
             url: '/dashboard',
             templateUrl: 'web/views/dashboard.html'
-        }).state('posts', {
-            url: '/posts/:slug',
-            templateUrl: 'web/views/posts.html'
+        }).state('category post', {
+            url: '/category/:slug',
+            templateUrl: 'web/views/category.html'
         }).state('codemirror', {
             url: '/codemirror',
             templateUrl: 'web/views/codemirror.html'
+        }).state('article', {
+            url: '/article/:id',
+            templateUrl: 'web/views/detailpost.html'
         })
         ;
     }

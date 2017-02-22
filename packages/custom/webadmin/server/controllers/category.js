@@ -104,3 +104,21 @@ exports.findNamCate =  function(req, res){
     })
 
 }
+
+exports.findBySlug = function(req, res){
+    //console.log(req.params.slug)
+    //res.json(req.params.slug)
+    Category.findOne({slug: req.params.slug}, function(err, data){
+        if(err){
+            return res.json(err)
+        }
+        res.json(data);
+    })
+}
+
+exports.findCategoryByParent = function(req, res){
+    Category.find({parent_id: req.params.parent_id}, function(err, data){
+        if(err) res.json(err);
+        res.json(data);
+    })
+}

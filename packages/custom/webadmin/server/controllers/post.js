@@ -58,3 +58,10 @@ exports.delete = function(req, res){
         res.json(deleted);
     });
 }
+
+exports.getPostByCategory = function(req, res){
+    Post.find({category_id: req.params.category_id}, function(err, data){
+        if(err) res.json(err)
+        res.json(data);
+    })
+}

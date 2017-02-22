@@ -1,15 +1,17 @@
-<div class="container-fluid content" ng-controller="WebController as webctr">
+<div class="container-fluid content" ng-controller="WebController as webctr" ng-init="getPostsByCategory()">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-8">
-				<article>
+
+				
+				<article ng-if="posts" ng-repeat="item in posts">
 					<section class="animated fadeInUp">
 						<img class="bieutuong" src="/bower_components/lib/img/bieutuongpng.png" height="50" width="50" alt="">
 						<div class="header-article">
 							<h1>
-								<a href="">Bài 1: PHP trang tin tức - Tạo database và cấu trúc folder admin</a>
+								<a ui-sref="article({id:item._id})" href="#">{{ item.title }}  </a>
 							</h1>
 							<h2>
-								Tác giả: <span class="tacgia"> Phạm An Bình </span> Ngày: 23-11-2016 Series: <span class="series"><a href="">Web tin tức PHP căn bản</a> </span>								View: 674
+								Tác giả: <span class="tacgia"> {{ item.author }} </span> Ngày: 23-11-2016 Series: <span class="series"><a href="">Web tin tức PHP căn bản</a> </span>								View: 674
 							</h2>
 						</div>
 					</section>
@@ -22,48 +24,8 @@
 						</p>
 					</section>
 				</article>
-				<article>
-					<section class="animated fadeInUp">
-						<img class="bieutuong" src="/bower_components/lib/img/bieutuongpng.png" height="50" width="50" alt="">
-						<div class="header-article">
-							<h1>
-								Bài 2: PHP trang tin tức - Tạo database và cấu trúc folder admin
-							</h1>
-							<h2>
-								Tác giả: Phạm An Bình Ngày: 23-11-2016 Series: Web tin tức PHP căn bản View: 674
-							</h2>
-						</div>
-					</section>
-					<section class="clearfix animated fadeInUp">
-						<img class="hinhdaidien" src="/bower_components/lib/img/bai1.gif" height="124px" width="125px" alt="">
-						<p class="chitiet">
-							Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
-							tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
-							bạn phải có kiến thức cơ bản về một số ngôn ngữ như PHP OOP, HTML, CSS, Javascript, ...
-						</p>
-					</section>
-				</article>
-				<article>
-					<section class="animated fadeInUp">
-						<img class="bieutuong" src="/bower_components/lib/img/bieutuongpng.png" height="50" width="50" alt="">
-						<div class="header-article">
-							<h1>
-								Bài 3: PHP trang tin tức - Tạo database và cấu trúc folder admin
-							</h1>
-							<h2>
-								Tác giả: Phạm An Bình Ngày: 23-11-2016 Series: Web tin tức PHP căn bản View: 674
-							</h2>
-						</div>
-					</section>
-					<section class="clearfix animated fadeInUp">
-						<img class="hinhdaidien" src="/bower_components/lib/img/bai1.gif" height="124px" width="125px" alt="">
-						<p class="chitiet">
-							Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
-							tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
-							bạn phải có kiến thức cơ bản về một số ngôn ngữ như PHP OOP, HTML, CSS, Javascript, ...
-						</p>
-					</section>
-				</article>
+
+				<div ng-if=" posts.length == 0 ">Empty</div>
 				THỰC HIỆN PHÂN TRANG CÁC BÀI VIẾT
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4">

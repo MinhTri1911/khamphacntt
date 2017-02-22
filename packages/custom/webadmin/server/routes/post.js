@@ -19,5 +19,7 @@
         
         app.delete('/api/post/:id', post.delete);
 
+        app.get('/api/post/category/:category_id', post.getPostByCategory);
+
     };
 })();

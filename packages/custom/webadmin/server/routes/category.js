@@ -24,5 +24,9 @@
         app.get('/api/parent/notnull', category.findNotNull);
 
         app.get('/api/parent/:parent_id', category.findNamCate);
+
+        app.get('/api/category/slug/:slug', category.findBySlug);
+
+        app.get('/api/category/parent/:parent_id', category.findCategoryByParent);
     };
 })();

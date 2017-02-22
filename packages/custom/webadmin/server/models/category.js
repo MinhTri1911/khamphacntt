@@ -40,7 +40,8 @@ var cateSchema = new Schema({
     	type: Schema.ObjectId,
         ref: 'Category',
     	default: null
-    }
+    },
+    parent:[]
 });
 
 cateSchema.pre('save', function(next) {

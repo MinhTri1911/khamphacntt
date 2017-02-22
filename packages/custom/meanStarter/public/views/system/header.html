@@ -34,84 +34,7 @@
             <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
             <li><a href="#">Dummy item</a></li>
             <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">more...</a>
-              <ul>
-                <li><a href="#">Dummy item</a></li>
-                <li><a href="#" class="current">A 'current' class item</a></li>
-                <li><a href="#">Dummy item</a></li>
-                <li><a href="#">more...</a>
-                  <ul>
-                    <li><a href="#">subMenusMinWidth</a></li>
-                    <li><a href="#">10em</a></li>
-                    <li><a href="#">forced.</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Dummy item</a></li>
-                <li><a href="#">Dummy item</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
+        
           </ul>
         </li>
       </ul>
@@ -119,13 +42,8 @@
 
     <li><h2><a href="#">TECHNOLOGIES</a></h2>
       <ul>
-          <div data-ng-repeat="item in categories">
-        <li ><a ui-sref="posts({slug:'{{item.slug}}'})" href="#">{{item.name}}</a>
-          <ul>
-            <li data-ng-repeat="cate in categories"><a href="#">{{cate.name}}</a></li>
-          </ul>
+        <li ng-repeat="item in categories" ><a ui-sref="category post({slug:'{{item.slug}}'})" href="#">{{item.name}}</a>
         </li>
-          </div>
       </ul>
     </li>
 

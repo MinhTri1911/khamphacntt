@@ -3,7 +3,7 @@
 
     /* jshint -W098 */
 
-    function WebController($scope, Global, Web, $stateParams, $http, getSeries, getPosts) {
+    function WebController($scope, Global, Web, $stateParams, $http, getSeries, getPosts, getCategory, getPostByCategory, getArticle) {
         $scope.global = Global;
         $scope.package = {
             name: 'web'
@@ -32,6 +32,26 @@
             })
             
         }
+
+        $scope.getPostsByCategory = function(){
+
+            //console.log($stateParams)
+            getCategory.getCategory($stateParams.slug).then(function(response){
+                var category = response;
+
+                getPostByCategory.getPostByCategory(category._id).then(function(response){
+                    $scope.posts = response;
+
+                    // console.log($scope.posts)
+                })
+            })
+        }
+
+        $scope.getArticle = function(){
+            getArticle.getArticle($stateParams.id).then(function(response){
+                $scope.article = response;
+            })
+        }
         
         $scope.editorOptions = {
             lineWrapping : true,
@@ -47,6 +67,6 @@
         .module('mean.web')
         .controller('WebController', WebController);
 
-    WebController.$inject = ['$scope', 'Global', 'Web', '$stateParams', '$http', 'getSeries', 'getPosts'];
+    WebController.$inject = ['$scope', 'Global', 'Web', '$stateParams', '$http', 'getSeries', 'getPosts', 'getCategory', 'getPostByCategory', 'getArticle'];
 
 })();

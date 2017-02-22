@@ -74,15 +74,15 @@
         
         $scope.create = function(){
 
-            console.log($scope.post)
-            // $scope.post.user_id = MeanUser.user._id;
-            // $scope.post.image = $scope.image;
-            // $scope.post.images = $scope.images;
+            //console.log($scope.post)
+            $scope.post.user_id = MeanUser.user._id;
+            $scope.post.image = $scope.image;
+            $scope.post.images = $scope.images;
 
-            // $http.post('/api/post', $scope.post)
-            //     .success(function(data){
-            //         $state.go('post');
-            //     });
+            $http.post('/api/post', $scope.post)
+                .success(function(data){
+                    $state.go('post');
+                });
         };
 
         $scope.delete = function(post){

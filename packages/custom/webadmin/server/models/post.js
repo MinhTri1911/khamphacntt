@@ -95,7 +95,9 @@ var postSchema = new Schema({
         default: null
     },
     tags: [{
-        type: String
+        text: {
+            type: String
+        }    
     }],
     series:[]
 });
