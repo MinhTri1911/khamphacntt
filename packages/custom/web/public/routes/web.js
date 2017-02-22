@@ -20,6 +20,9 @@
         }).state('article', {
             url: '/article/:id',
             templateUrl: 'web/views/detailpost.html'
+        }).state('series post',{
+            url: '/series/:id',
+            templateUrl: 'web/views/series.html'
         })
         ;
     }

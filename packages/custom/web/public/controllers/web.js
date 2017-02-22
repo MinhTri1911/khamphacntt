@@ -3,7 +3,7 @@
 
     /* jshint -W098 */
 
-    function WebController($scope, Global, Web, $stateParams, $http, getSeries, getPosts, getCategory, getPostByCategory, getArticle) {
+    function WebController($scope, Global, Web, $stateParams, $http, getSeries, getPosts, getCategory, getPostByCategory, getArticle, getPostBySeries) {
         $scope.global = Global;
         $scope.package = {
             name: 'web'
@@ -47,10 +47,31 @@
             })
         }
 
+        $scope.getPostBySeries = function(){
+            getSeries.getSeries($stateParams.id).then(function(response){
+                var series = response;
+
+                getPostBySeries.getPostBySeries(series._id).then(function(response){
+                    $scope.posts = response;
+                })
+            })
+        }
+
         $scope.getArticle = function(){
             getArticle.getArticle($stateParams.id).then(function(response){
-                $scope.article = response;
+
+                var article = response;
+
+                getSeries.getSeries(article.news_series_id).then(function(response){
+                    article.series.push(response);
+                });
+
+                $scope.article = article;
+
+                // console.log($scope.article);
             })
+
+            
         }
         
         $scope.editorOptions = {
@@ -67,6 +88,6 @@
         .module('mean.web')
         .controller('WebController', WebController);
 
-    WebController.$inject = ['$scope', 'Global', 'Web', '$stateParams', '$http', 'getSeries', 'getPosts', 'getCategory', 'getPostByCategory', 'getArticle'];
+    WebController.$inject = ['$scope', 'Global', 'Web', '$stateParams', '$http', 'getSeries', 'getPosts', 'getCategory', 'getPostByCategory', 'getArticle', 'getPostBySeries'];
 
 })();

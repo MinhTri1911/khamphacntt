@@ -65,3 +65,10 @@ exports.getPostByCategory = function(req, res){
         res.json(data);
     })
 }
+
+exports.getPostBySeries = function(req, res){
+    Post.find({news_series_id: req.params.news_series_id}, function(err, data){
+        if(err) res.json(err);
+        res.json(data);
+    })
+}

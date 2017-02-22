@@ -49,13 +49,8 @@
 
     <li ng-init=""><h2><a href="#">SERIES</a></h2>
       <ul>
-          <div data-ng-repeat="item in series">
-        <li ><a href="#">{{item.name}}</a>
-          <ul>
-            <li data-ng-repeat="cate in categories"><a href="#">{{cate.name}}</a></li>
-          </ul>
+        <li data-ng-repeat="item in series"><a ui-sref="series post({id:item._id})" href="#">{{item.name}}</a>
         </li>
-          </div>
       </ul>
     </li>
 

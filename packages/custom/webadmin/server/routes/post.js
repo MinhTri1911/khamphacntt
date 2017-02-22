@@ -21,5 +21,7 @@
 
         app.get('/api/post/category/:category_id', post.getPostByCategory);
 
+        app.get('/api/post/series/:news_series_id', post.getPostBySeries);
+
     };
 })();

@@ -1,6 +1,13 @@
 <div class="container-fluid content" ng-controller="WebController" ng-init="getArticle()">
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-8">
+        <!--<div class="row">
+            <pre>
+
+                {{ article | json }}
+            </pre>
+        </div>-->
+
         <div class="row">
             <article class="col-md-12 post">
                 <section>
@@ -10,12 +17,12 @@
                             <a href="">{{ article.title }}</a>
                         </h1>
                         <h2>
-                            Tác giả: <span class="tacgia">{{ article.author }}</span> Ngày: 23-11-2016 Series: <span class="series"><a href="">Web tin tức PHP căn bản</a> </span>									View: 674
+                            Tác giả: <span class="tacgia">{{ article.author }}</span> Ngày: 23-11-2016 Series: <span class="series"><a href="">{{ article.series[0].name }}</a> </span>View: {{ article.view_count }}
                         </h2>
                     </div>
                 </section>
                 <section class="clearfix">
-                    <img class="hinhdaidien" src="/files/uploads/{{ article.image }}" height="124px" width="125px" alt="">
+                    <img class="hinhdaidien" ng-src="/api/files/uploads/{{ article.image }}" height="124px" width="125px" alt="">
                     <p class="chitiet">
                         Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
                         tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
@@ -23,21 +30,15 @@
                     </p>
                 </section>
                 <section class="post-desc clearfix">
-                    <p >
-                        Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
-                        tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
-                        bạn phải có kiến thức cơ bản về một số ngôn ngữ như PHP OOP, HTML, CSS, Javascript, ... jsk kbd kk kk
-                    </p>
-                    <p >
-                        Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
-                        tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
-                        bạn phải có kiến thức cơ bản về một số ngôn ngữ như PHP OOP, HTML, CSS, Javascript, ... jsk kbd kk kk
-                    </p>
-                    <p >
-                        Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
-                        tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
-                        bạn phải có kiến thức cơ bản về một số ngôn ngữ như PHP OOP, HTML, CSS, Javascript, ... jsk kbd kk kk
-                    </p>
+                    <pre>
+                        <code class="language-java" ng-bind="article.code" prism>
+                            
+                        </code>
+
+                    </pre>
+
+                    <ui-codemirror ng-bind="article.content" ></ui-codemirror>
+
                     <p >
                         Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
                         tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
