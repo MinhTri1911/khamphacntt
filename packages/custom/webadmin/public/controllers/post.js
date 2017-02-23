@@ -26,6 +26,7 @@
         };
 
         $scope.gotoCreate = function(){
+            // console.log($location.$$host);
             $state.go('post create');
         }
         $scope.gotoIndex = function(){
@@ -97,6 +98,14 @@
                         });
                     })
             }
+        }
+
+        $scope.viewImage = function(){
+            $scope.hinhanh = $scope.image;
+        }
+
+        $scope.viewImages = function(){
+            $scope.hinhanhs = $scope.images;
         }
 
         // $scope.findSeries();

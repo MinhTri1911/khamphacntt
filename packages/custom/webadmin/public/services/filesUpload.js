@@ -12,10 +12,8 @@ angular
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
-    
         .success(function(){
         })
-    
         .error(function(){
         });
     }

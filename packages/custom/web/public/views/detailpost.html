@@ -38,12 +38,10 @@
                     </pre>
 
                     <ui-codemirror ng-bind="article.content" ></ui-codemirror>
-
-                    <p >
-                        Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
-                        tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
-                        bạn phải có kiến thức cơ bản về một số ngôn ngữ như PHP OOP, HTML, CSS, Javascript, ... jsk kbd kk kk
-                    </p>
+                    <ng-bind-html ng-bind-html="expression">
+                    {{ article.content }}
+                    </ng-bind-html>
+                    
                 </section>
                 <section class="posts-together clearfix">
                     <div class="row">

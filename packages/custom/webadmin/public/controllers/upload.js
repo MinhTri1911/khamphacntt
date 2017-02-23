@@ -2,6 +2,7 @@
 angular
 .module('mean.webadmin')
 .controller('UploadController', ['$scope', 'fileUpload', 'filesUpload', '$state', function($scope, fileUpload, filesUpload, $state){
+    
     $scope.uploadFile = function(){
         var file = $scope.image;
         

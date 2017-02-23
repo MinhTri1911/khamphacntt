@@ -31,9 +31,6 @@ var postSchema = new Schema({
     images: [{
         type: String
     }],
-    code: {
-        type: String
-    },
     published_on: {
         type: Date,
         default: Date.now
