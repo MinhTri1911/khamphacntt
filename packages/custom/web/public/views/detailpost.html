@@ -13,16 +13,17 @@
                 <section>
                     <img class="bieutuong" src="" height="50" width="50" alt="">
                     <div class="header-article">
+
                         <h1>
                             <a href="">{{ article.title }}</a>
                         </h1>
                         <h2>
-                            Tác giả: <span class="tacgia">{{ article.author }}</span> Ngày: 23-11-2016 Series: <span class="series"><a href="">{{ article.series[0].name }}</a> </span>View: {{ article.view_count }}
+                            Tác giả: <span class="tacgia">{{ article.author }}</span> Ngày: {{ article.created_at | date:"dd/MM/yyyy" }} Series: <span class="series"><a href="">{{ article.series[0].name }}</a> </span>View: {{ article.view_count }}
                         </h2>
                     </div>
                 </section>
                 <section class="post-desc clearfix">
-
+                    
                     <div ng-bind-html="article.content">
                     </div>
 

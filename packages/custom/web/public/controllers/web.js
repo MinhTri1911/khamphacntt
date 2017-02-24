@@ -40,6 +40,12 @@
                 var category = response;
 
                 getPostByCategory.getPostByCategory(category._id).then(function(response){
+                    var posts = response;
+                    angular.forEach(posts, function(value, key) {
+                        getSeries.getSeries(value.news_series_id).then(function(response){
+                            value.series.push(response);
+                        })
+                    }, this);
                     $scope.posts = response;
 
                     // console.log($scope.posts)
@@ -52,7 +58,14 @@
                 var series = response;
 
                 getPostBySeries.getPostBySeries(series._id).then(function(response){
-                    $scope.posts = response;
+                    var posts = response;
+                    angular.forEach(posts, function(value, key){
+                        getSeries.getSeries(value.news_series_id).then(function(response){
+                            value.series.push(response);
+                        })
+                    }, this);
+                    
+                    $scope.posts = posts;
                 })
             })
         }

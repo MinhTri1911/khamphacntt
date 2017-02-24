@@ -71,8 +71,6 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
       //       });
       //   }, this);
       //   $scope.categories = categories;
-
-      //   console.log($scope.categories);
       // });
     }
 

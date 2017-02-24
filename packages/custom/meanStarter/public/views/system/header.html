@@ -5,41 +5,9 @@
 <nav id="main-nav" class="navbar navbar-default top-navbar" role="navigation">
   <!-- Sample menu definition -->
   <ul id="main-menu-" class="sm sm-blue">
-    <li><h2><a href="http://www.smartmenus.org/">Home</a></h2></li>
-    <li><h2><a href="http://www.smartmenus.org/about/">About</a></h2>
-      <ul>
-        <li><a href="http://www.smartmenus.org/about/introduction-to-smartmenus-jquery/">Introduction to SmartMenus jQuery</a></li>
-        <li><a href="http://www.smartmenus.org/about/themes/">Demos + themes</a></li>
-        <li><a href="http://vadikom.com/about/#vasil-dinkov">The author</a></li>
-        <li><a href="http://www.smartmenus.org/about/vadikom/">The company</a>
-          <ul>
-            <li><a href="http://vadikom.com/about/">About Vadikom</a></li>
-            <li><a href="http://vadikom.com/projects/">Projects</a></li>
-            <li><a href="http://vadikom.com/services/">Services</a></li>
-            <li><a href="http://www.smartmenus.org/about/vadikom/privacy-policy/">Privacy policy</a></li>
-          </ul>
-        </li>
-      </ul>
+    <li><h2><a ui-sref="home" href="#">Home</a></h2></li>
     </li>
-    <li><h2><a href="http://www.smartmenus.org/download/">Download</a></h2></li>
-    <li><h2><a href="http://www.smartmenus.org/docs/">Docs</a></h2></li>
-    <li><h2><a href="#">Sub test</a></h2>
-      <ul>
-        <li><a href="#">Dummy item</a></li>
-        <li><a href="#">Dummy item</a></li>
-        <li><a href="#" class="disabled">Disabled menu item</a></li>
-        <li><a href="#">Dummy item</a></li>
-        <li><a href="#">more...</a>
-          <ul>
-            <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-            <li><a href="#">Dummy item</a></li>
-            <li><a href="#">Dummy item</a></li>
-        
-          </ul>
-        </li>
-      </ul>
-    </li>
-
+    
     <li><h2><a href="#">TECHNOLOGIES</a></h2>
       <ul>
         <li ng-repeat="item in categories" ><a ui-sref="category post({slug:'{{item.slug}}'})" href="#">{{item.name}}</a>
@@ -47,7 +15,7 @@
       </ul>
     </li>
 
-    <li ng-init=""><h2><a href="#">SERIES</a></h2>
+    <li><h2><a href="#">SERIES</a></h2>
       <ul>
         <li data-ng-repeat="item in series"><a ui-sref="series post({id:item._id})" href="#">{{item.name}}</a>
         </li>
@@ -67,7 +35,7 @@
     </li>
 
     
-    <li class="dropdown pull-right" ng-if="hdrctr.hdrvars.authenticated">
+    <li class="dropdown pull-right" ng-show="hdrctr.hdrvars.authenticated">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
               <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
           </a>
@@ -83,7 +51,7 @@
           <!-- /.dropdown-user -->
       </li>
       <!-- /.dropdown -->
-    <li class="dropdown pull-right" ng-if="hdrctr.hdrvars.authenticated">
+    <li class="dropdown pull-right" ng-show="hdrctr.hdrvars.authenticated">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
               <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
           </a>
@@ -134,7 +102,7 @@
           <!-- /.dropdown-messages -->
       </li>
       <!-- /.dropdown -->
-      <li class="dropdown pull-right" ng-if="hdrctr.hdrvars.authenticated">
+      <li class="dropdown pull-right" ng-show="hdrctr.hdrvars.authenticated">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
               <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
           </a>
@@ -213,7 +181,7 @@
           <!-- /.dropdown-tasks -->
       </li>
       <!-- /.dropdown -->
-      <li class="dropdown pull-right" ng-if="hdrctr.hdrvars.authenticated">
+      <li class="dropdown pull-right" ng-show="hdrctr.hdrvars.authenticated">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
               <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
           </a>
