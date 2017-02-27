@@ -22,6 +22,7 @@
             $http.get('/api/post')
                 .success(function(data){
                     $scope.posts = data;
+                    $rootScope.$title = "Danh Sách Bài Viết";
                 })
         };
 
@@ -40,6 +41,7 @@
             $http.get('/api/post/' + $stateParams.id)
                 .success(function(data){
                     $scope.post = data;
+                    $rootScope.$title = data.title;
                 });
 
         }
