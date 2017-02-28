@@ -3,7 +3,7 @@
 
     /* jshint -W098 */
 
-    function WebController($scope, $rootScope, Global, Web, $stateParams, $http, getSeries, getPosts, getCategory, getPostByCategory, getArticle, getPostBySeries) {
+    function WebController($scope, $rootScope, Global, Web, $stateParams, $state, $http, getSeries, getPosts, getCategory, getPostByCategory, getArticle, getPostBySeries, Search) {
         $scope.global = Global;
         $scope.package = {
             name: 'web'
@@ -88,6 +88,16 @@
 
             
         }
+
+        $scope.search = function(){
+            $state.go('search')
+        }
+
+        $scope.findSearch = function(){
+            Search.Search().then(function(response){
+                $scope.posts = response;
+            })
+        }
         
         $scope.editorOptions = {
             lineWrapping : true,
@@ -95,6 +105,8 @@
             readOnly: 'nocursor',
             mode: 'xml',
         };
+
+        
         
         
     }
@@ -103,6 +115,6 @@
         .module('mean.web')
         .controller('WebController', WebController);
 
-    WebController.$inject = ['$scope', '$rootScope', 'Global', 'Web', '$stateParams', '$http', 'getSeries', 'getPosts', 'getCategory', 'getPostByCategory', 'getArticle', 'getPostBySeries'];
+    WebController.$inject = ['$scope', '$rootScope', 'Global', 'Web', '$stateParams', '$state', '$http', 'getSeries', 'getPosts', 'getCategory', 'getPostByCategory', 'getArticle', 'getPostBySeries', 'Search'];
 
 })();

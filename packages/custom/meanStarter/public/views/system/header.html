@@ -12,7 +12,8 @@
 <div class="navbar-fixed-top" ng-controller="HeaderController as hdrctr" ng-init="getAllCate();getAllSeries();" >
 
 <!--/. NAV TOP  -->
-<nav id="main-nav" class="navbar navbar-default top-navbar" role="navigation">
+<nav style="background-color: #3092c0;" id="main-nav" class="navbar navbar-default top-navbar" role="navigation">
+    <div  class="col-md-9">
   <!-- Sample menu definition -->
   <ul id="main-menu" class="sm sm-blue">
     <li><h2><a ui-sref="home" href="#">Home</a></h2></li>
@@ -31,7 +32,6 @@
         </li>
       </ul>
     </li>
-
 
     <li class="pull-right" ng-if="!hdrctr.hdrvars.authenticated">
       <a ui-sref="auth.login" href="javascript:void(0);">
@@ -62,7 +62,19 @@
           <!-- /.dropdown-user -->
       </li>
       <!-- /.dropdown -->
-  </ul>
+  </ul></div>
+
+  <div ng-controller="WebController" style="margin-top: 7px; padding-right: 50px" class="input-group pull-right col-md-3">
+
+        <input type="text" class="form-control" placeholder="Search this site">
+        <span class="input-group-btn">
+            <button type="submit" ng-click="search();" class="btn btn-default">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+        </span>
+
+</div>
+
 </nav>
 
 

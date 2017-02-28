@@ -23,6 +23,9 @@
         }).state('series post',{
             url: '/series/:id',
             templateUrl: 'web/views/series.html'
+        }).state('search', {
+            url: '/search',
+            templateUrl: 'web/views/search.html'
         })
         ;
     }
