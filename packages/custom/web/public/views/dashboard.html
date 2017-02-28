@@ -18,7 +18,8 @@
 						<!--<p class="chitiet">
 							{{ item.content }}
 						</p>-->
-						<ui-codemirror ng-bind="item.content" ui-codemirror-opts="editorOptions"></ui-codemirror> 
+						<div bind-html-compile="item.content">
+                    	</div> 
 					</section>
 				</article>
 				THỰC HIỆN PHÂN TRANG CÁC BÀI VIẾT

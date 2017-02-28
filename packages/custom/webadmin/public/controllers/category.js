@@ -21,8 +21,10 @@
         
         $scope.categories = [];
         $scope.findAll = function(){
+
             $http.get('api/category')
                 .success(function(data){
+                    $rootScope.$title = 'Danh mục bài viết';
                     $scope.categories = data;
                 })
         };
@@ -48,6 +50,7 @@
         
 
         $scope.create = function(isValid){
+            $rootScope.$title = 'Thêm danh mục bài viết mới';
             if(isValid){
                 $http.post('/api/category', $scope.category)
                 .success(function(data){
