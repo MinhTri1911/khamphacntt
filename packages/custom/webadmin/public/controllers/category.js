@@ -3,7 +3,7 @@
 
     /* jshint -W098 */
 
-    function CategoryController($scope, Global, Category, $stateParams, $state, $http, $location, $window) {
+    function CategoryController($scope, $rootScope, Global, Category, $stateParams, $state, $http, $location, $window) {
         $scope.global = Global;
         $scope.package = {
             name: 'category'
@@ -46,11 +46,11 @@
 
         $scope.gotoCreate = function(){
             $state.go('category create');
+            $rootScope.$title = '1111111111111111';
         }
         
 
         $scope.create = function(isValid){
-            $rootScope.$title = 'Thêm danh mục bài viết mới';
             if(isValid){
                 $http.post('/api/category', $scope.category)
                 .success(function(data){
@@ -105,6 +105,6 @@
         .module('mean.webadmin')
         .controller('CategoryController', CategoryController);
 
-    CategoryController.$inject = ['$scope', 'Global', 'Category', '$stateParams', '$state', '$http', '$location', '$window'];
+    CategoryController.$inject = ['$scope', '$rootScope', 'Global', 'Category', '$stateParams', '$state', '$http', '$location', '$window'];
 
 })();
