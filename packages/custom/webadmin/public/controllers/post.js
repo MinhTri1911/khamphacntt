@@ -4,6 +4,7 @@
     /* jshint -W098 */
 
     function PostController($scope, Global, Post, $stateParams, $state, $http, $location, $window, $rootScope, MeanUser) {
+        
         $scope.global = Global;
         $scope.package = {
             name: 'post'

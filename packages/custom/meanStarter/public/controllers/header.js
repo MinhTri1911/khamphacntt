@@ -2,7 +2,12 @@
 
 angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state', '$http', 'getParent', 'getCategoryByParent',
   function ($scope, $rootScope, Menus, MeanUser, $state, $http, getParent, getCategoryByParent) {
+    $rootScope.$on('$stateChangeSuccess', function() {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
+    $rootScope.$title = "Home";
     var vm = this;
+              
 
     vm.menus = {};
     vm.hdrvars = {

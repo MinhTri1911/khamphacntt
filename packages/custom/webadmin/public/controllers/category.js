@@ -8,6 +8,7 @@
         $scope.package = {
             name: 'category'
         };
+        
         $scope.checkCircle = function () {
             Category.checkCircle($stateParams.circle).then(function (response) {
                 $scope.res = response;
