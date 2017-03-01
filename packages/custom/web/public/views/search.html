@@ -1,22 +1,19 @@
-<div class="container-fluid content" ng-controller="WebController as webctr" ng-init="findSearch();">
+<div class="container-fluid content" ng-controller="WebController as webctr" data-ng-init="findSearch()" ng-cloak>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-8">
 				
 				
-				<article ng-if="posts" ng-repeat="item in posts">
+				<article ng-repeat="item in articles">
 					<section class="animated fadeInUp">
-						<img class="bieutuong" src="/bower_components/lib/img/bieutuongpng.png" height="50" width="50" alt="">
+						<img class="bieutuong" src="" height="50" width="50" alt="">
 						<div class="header-article">
 							<h1>
-								<a ui-sref="article({id:item._id})" href="#">{{ item.title }}  </a>
+								<a ui-sref="article({slug:item.slug})" href="#">{{ item.title }}  </a>
 							</h1>
-							<h2>
-								Tác giả: <span class="tacgia"> {{ item.author }} </span> Ngày: {{ item.created_at | date:"dd/MM/yyyy" }} Series: <span class="series"><a href="">{{ item.series[0].name }}</a> </span>View: {{ item.view_count }}
-							</h2>
 						</div>
 					</section>
 					<section class="clearfix animated fadeInUp">
-						<img class="hinhdaidien" ng-src="/api/files/uploads/{{item.image}}" height="124px" width="125px" alt="">
+						<img class="hinhdaidien" ng-src="" height="124px" width="125px" alt="">
 						<p class="chitiet">
 							Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
 							tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
@@ -25,8 +22,13 @@
 					</section>
 				</article>
 
-				<div ng-if=" posts.length == 0 ">Empty</div>
-				THỰC HIỆN PHÂN TRANG CÁC BÀI VIẾT
+				<div ng-if=" articles.length==0 "><h2>Search not found!</h2></div>
+				<nav ng-show="isLoading">
+					<img src="/meanStarter/assets/img/loader.gif" alt="">
+				</nav>
+				<button ng-cloak ng-hide="isLoading || articles.length==0" type="button" class="btn search btn-primary btn-lg btn-block" ng-disabled="(articles.length) >= total" data-ng-click="loadMore()">
+					LOAD MORE ({{articles.length ? articles.length : 0}}/{{total ? total : 0}})
+				</button>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4">
 				<div class="rightBox animated fadeInUp">

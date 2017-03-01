@@ -72,3 +72,10 @@ exports.getPostBySeries = function(req, res){
         res.json(data);
     })
 }
+
+exports.getPostBySlug = function(req, res, next){
+    Post.findOne({slug: req.params.slug}, function(err, data){
+        if(err) res.json(err)
+        res.json(data);
+    })
+}

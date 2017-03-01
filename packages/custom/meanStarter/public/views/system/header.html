@@ -1,18 +1,15 @@
-<!--<div class="container-fluid">
+
+<div ng-controller="HeaderController as hdrctr" ng-init="getAllCate();getAllSeries();" >
+<div class="container-fluid">
     <div class="row">
         <div class="col-xs-6 col-md-8">
-            <img src="/bower_components/lib/img/logokhampha.png" id="logo" alt="Logo khamphacntt">
+            <img src="/meanStarter/assets/img/logokhampha.png" id="logo" alt="Logo khamphacntt">
         </div>
-        <ul class="list-inline col-xs-6 col-md-4">
-            <li><a href="">Login</a></li>
-            <li><a href="">Register</a></li>
-        </ul>
     </div>
-</div>-->
-<div class="navbar-fixed-top" ng-controller="HeaderController as hdrctr" ng-init="getAllCate();getAllSeries();" >
-
+</div>
+<div id="main-nav">
 <!--/. NAV TOP  -->
-<nav style="background-color: #3092c0;" id="main-nav" class="navbar navbar-default top-navbar" role="navigation">
+<nav style="background-color: #3092c0;" class="navbar navbar-default top-navbar" role="navigation">
     <div  class="col-md-9">
   <!-- Sample menu definition -->
   <ul id="main-menu" class="sm sm-blue">
@@ -63,18 +60,18 @@
       </li>
       <!-- /.dropdown -->
   </ul></div>
+<form ng-controller="WebController" name="searchForm" role="search" data-ng-submit="getSearch(text)">
+  <div style="margin-top: 7px; padding-right: 50px" class="input-group pull-right col-md-3">
 
-  <div ng-controller="WebController" style="margin-top: 7px; padding-right: 50px" class="input-group pull-right col-md-3">
-
-        <input type="text" class="form-control" placeholder="Search this site">
+        <input type="text" class="form-control" placeholder="Search this site" ng-model="text">
         <span class="input-group-btn">
-            <button type="submit" ng-click="search();" class="btn btn-default">
+            <button type="submit" class="btn btn-default">
             <span class="glyphicon glyphicon-search"></span>
         </button>
         </span>
 
 </div>
-
+</form>
 </nav>
 
 
@@ -100,5 +97,6 @@
 
 </nav>
 <!-- /. NAV SIDE  -->
+</div>
 </div>
 

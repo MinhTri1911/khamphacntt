@@ -8,7 +8,7 @@
 						<img class="bieutuong" src="/bower_components/lib/img/bieutuongpng.png" height="50" width="50" alt="">
 						<div class="header-article">
 							<h1>
-								<a ui-sref="article({id:item._id})" href="#">{{ item.title }}  </a>
+								<a ui-sref="article({slug:item.slug})" href="#">{{ item.title }}  </a>
 							</h1>
 							<h2>
 								Tác giả: <span class="tacgia"> {{ item.author }} </span> Ngày: {{ item.created_at | date:"dd/MM/yyyy" }} Series: <span class="series"><a href="">{{ item.series[0].name }}</a> </span>View: {{ item.view_count }}

@@ -4,7 +4,7 @@
     var post = require('../controllers/post');
     /* jshint -W098 */
     // The Package is past automatically as first parameter
-    module.exports = function(News ,app, auth, database, circles) {
+    module.exports = function(Posts ,app, auth, database, circles) {
 
         var requiresAdmin = circles.controller.hasCircle('admin');
         var requiresLogin = circles.controller.hasCircle('authenticated');
@@ -23,5 +23,6 @@
 
         app.get('/api/post/series/:news_series_id', post.getPostBySeries);
 
+        app.get('/api/post/slug/:slug', post.getPostBySlug);
     };
 })();

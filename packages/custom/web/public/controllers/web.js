@@ -3,7 +3,7 @@
 
     /* jshint -W098 */
 
-    function WebController($scope, $rootScope, Global, Web, $stateParams, $state, $http, getSeries, getPosts, getCategory, getPostByCategory, getArticle, getPostBySeries, Search) {
+    function WebController($scope, $rootScope, Global, Web, $stateParams, $state, $location, $http, getSeries, getPosts, getCategory, getPostByCategory, getArticle, getPostBySeries, getSearch) {
         $scope.global = Global;
         $scope.package = {
             name: 'web'
@@ -73,7 +73,7 @@
         }
 
         $scope.getArticle = function(){
-            getArticle.getArticle($stateParams.id).then(function(response){
+            getArticle.getArticle($stateParams.slug).then(function(response){
 
                 var article = response;
                 $rootScope.$title = article.title;
@@ -88,16 +88,43 @@
 
             
         }
-
-        $scope.search = function(){
-            $state.go('search')
+        
+        $scope.getSearch = function(text){
+            $state.go('search', {"text": text, "page": 1, "limit": 1});
+            
         }
 
         $scope.findSearch = function(){
-            Search.Search().then(function(response){
-                $scope.posts = response;
-            })
-        }
+            var params = $location.search()
+            $scope.isLoading = true;
+            getSearch.getSearch(params.text, params.page, params.limit).then(function (response) {
+                $scope.articles = response.data;
+                $scope.page = response.page;
+                $scope.pages = response.pages;
+                $scope.limit = response.limit;
+                $scope.text = params.text;
+                $scope.total = response.total;
+            }, function (error) {
+                console.log('error', error);
+            }).finally(function () {
+                $scope.isLoading = false;
+            });
+        };
+        $scope.loadMore = function () {
+            if ($scope.articles.length >= $scope.total) return;
+            $scope.isLoading = true;
+            getSearch.getSearch($scope.text, $scope.page + 1, $scope.limit).then(function (response) {
+                $scope.articles = [].concat($scope.articles, response.data);
+                $scope.page = response.page;
+                $scope.pages = response.pages;
+                $scope.limit = response.limit;
+                $scope.total = response.total;
+            }, function (error) {
+                console.log('error', error);
+            }).finally(function () {
+                $scope.isLoading = false;
+            });
+        };
         
         $scope.editorOptions = {
             lineWrapping : true,
@@ -115,6 +142,6 @@
         .module('mean.web')
         .controller('WebController', WebController);
 
-    WebController.$inject = ['$scope', '$rootScope', 'Global', 'Web', '$stateParams', '$state', '$http', 'getSeries', 'getPosts', 'getCategory', 'getPostByCategory', 'getArticle', 'getPostBySeries', 'Search'];
+    WebController.$inject = ['$scope', '$rootScope', 'Global', 'Web', '$stateParams', '$state', '$location', '$http', 'getSeries', 'getPosts', 'getCategory', 'getPostByCategory', 'getArticle', 'getPostBySeries', 'getSearch'];
 
 })();

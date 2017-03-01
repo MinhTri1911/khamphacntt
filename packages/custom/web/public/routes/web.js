@@ -18,14 +18,19 @@
             url: '/codemirror',
             templateUrl: 'web/views/codemirror.html'
         }).state('article', {
-            url: '/article/:id',
+            url: '/article/:slug',
             templateUrl: 'web/views/detailpost.html'
         }).state('series post',{
             url: '/series/:id',
             templateUrl: 'web/views/series.html'
         }).state('search', {
-            url: '/search',
-            templateUrl: 'web/views/search.html'
+            url: '/search?:text&:page&:limit',
+            templateUrl: 'web/views/search.html',
+            resolve: {
+                $title: function () {
+                    return 'Search';
+                }
+            }
         })
         ;
     }

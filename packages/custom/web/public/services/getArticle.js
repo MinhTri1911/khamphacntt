@@ -3,10 +3,10 @@
 
     function getArticle($http, $q) {
         return {
-            getArticle: function(id){
+            getArticle: function(slug){
                 var deferred = $q.defer();
 
-                $http.get('/api/post/' + id)
+                $http.get('/api/post/slug/' + slug)
                 .success(function(response){
                     deferred.resolve(response);
                 }).error(function(response) {
