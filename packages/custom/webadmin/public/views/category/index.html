@@ -1,62 +1,74 @@
 <div class="page-inner" layout="column" flex data-ng-controller="CategoryController" ng-init="findAll()">       
 	<div class="row">
-        <div class="col-md-12">
-            <h1 class="page-header">
-                Tables Page <small>Responsive tables</small>
-            </h1>
-        </div>
-    </div> 
-    <div class="row">
-    	<div class="col-md-12">
-        	<button class="btn btn-primary" ng-click="gotoCreate()">Create Category</button>
-        </div>
-    </div>
-    <br />
-     <!-- /. ROW  -->        
-    <div class="row">
     <div class="col-md-12">
-
-            <!-- Advanced Tables -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                     Advanced Tables
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="dataTables-example" >
-                            <thead>
+        <h1 class="page-header">
+            Tables Page <small>Responsive tables</small>
+        </h1>
+    </div>
+  </div>     
+  <div class="row">
+    <div class="col-md-12">
+        <!-- Advanced Tables -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                 Advanced Tables
+            </div>
+            <div class="panel-body"> 
+                <button class="btn btn-primary" ng-click="gotoCreate()">Create Category</button>
+                <form class="form-inline pull-right">
+                  <div class="form-group">
+                    <label >Search</label>
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                  </div>
+                </form>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example" >
+                        <thead>
                           <tr>
-                              <th>id</th>
-                              <th>name</th>
-                              <th>keywords</th>
-                              <th>status</th>
-                              <th>parent</th>
+                              <th ng-click="sort('name')">name
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
+                              <th ng-click="sort('keywords')">keywords
+                              <span class="glyphicon sort-icon" ng-show="sortKey=='keywords'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
+                              <th ng-click="sort('status')">status
+                              <span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
+<!--                               <th>parent</th> -->
                               <th>actions</th>
                           </tr>
                       </thead>
                       <tbody>                                            
-                          <tr ng-repeat="cate in categories">
-                              <td>{{ cate._id }}</td>
+                          <tr dir-paginate="cate in categories|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
                               <td><strong>{{ cate.name }}</strong></td>
                               <td>{{ cate.keywords }}</td>
                               <td>{{ cate.status }}</td>
-                              <td>{{ cate.parent_id }}</td>
+                              <!-- <td>{{ cate.parent_id }}</td> -->
                               <td>
                                   <button ng-click="edit(cate);" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
                                   <button ng-click="delete(cate);" class="btn btn-danger btn-rounded btn-sm"><span class="fa fa-times"></span></button>
                               </td>
                           </tr>
                       </tbody>
-                        </table>
-
-                    </div>
-                    
+                    </table>
                 </div>
-
             </div>
-            <!--End Advanced Tables -->
+            <div class="panel-body"> 
+                <dir-pagination-controls
+					max-size="5"
+					direction-links="true"
+					boundary-links="true" >
+				</dir-pagination-controls>
+            </div>
+            
+
         </div>
+        <!--End Advanced Tables -->
     </div>
+  </div>
         <!-- /. ROW  -->
 </div>
+
 

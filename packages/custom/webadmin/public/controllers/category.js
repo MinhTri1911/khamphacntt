@@ -3,7 +3,7 @@
 
     /* jshint -W098 */
 
-    function CategoryController($scope, $rootScope, Global, Category, $stateParams, $state, $http, $location, $window) {
+    function CategoryController($log, $scope, $rootScope, Global, Category, $stateParams, $state, $http, $location, $window) {
         $scope.global = Global;
         $scope.package = {
             name: 'category'
@@ -26,6 +26,10 @@
                 .success(function(data){
                     $rootScope.$title = 'Danh mục bài viết';
                     $scope.categories = data;
+
+                    $scope.pageSize = 10;
+                    $scope.currentPage = 1;
+                    $scope.totalPage = (data.length / $scope.pageSize) + 1;
                 })
         };
         
@@ -96,7 +100,10 @@
             }
         }
 
-        
+        $scope.sort = function(keyname){
+            $scope.sortKey = keyname;   //set the sortKey to the param passed
+            $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+        };
         
 
     }
@@ -105,6 +112,6 @@
         .module('mean.webadmin')
         .controller('CategoryController', CategoryController);
 
-    CategoryController.$inject = ['$scope', '$rootScope', 'Global', 'Category', '$stateParams', '$state', '$http', '$location', '$window'];
+    CategoryController.$inject = ['$log', '$scope', '$rootScope', 'Global', 'Category', '$stateParams', '$state', '$http', '$location', '$window'];
 
 })();

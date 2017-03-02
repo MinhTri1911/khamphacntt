@@ -6,12 +6,6 @@
             </h1>
         </div>
     </div> 
-    <div class="row">
-    	<div class="col-md-12">
-        	<button class="btn btn-primary" ng-click="gotoCreate();">Create Post</button>
-        </div>
-    </div>
-    <br />
      <!-- /. ROW  -->   
     <div class="row">
     <div class="col-md-12"> 
@@ -20,22 +14,43 @@
                 <div class="panel-heading">
                      Advanced Tables
                 </div>
+                <div class="panel-body"> 
+                    <button class="btn btn-primary" ng-click="gotoCreate();">Create Post</button>
+                    <form class="form-inline pull-right">
+                    <div class="form-group">
+                        <label >Search</label>
+                        <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                    </div>
+                    </form>
+                </div>
                 <div class="panel-body">
                     <div class="table-responsive">
                       <table id="dataTables-example" class="table table-bordered table-striped table-actions">
                         <thead>
                             <tr>
-                                <th>id</th>
-                                <th>title</th>
-                                <th>author</th>
-                                <th>view count</th>
-                                <th>status</th>
-                                <th>published</th>
+                                <th ng-click="sort('id')">id
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('title')">title
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('author')">author
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='author'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('view_count')">view count
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='view_count'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('status')">status
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('published')">published
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='published'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
                                 <th>actions</th>
                             </tr>
                         </thead>
                         <tbody>                                            
-                            <tr ng-repeat="post in posts">
+                            <tr dir-paginate="post in posts|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
                                 <td>{{ post._id }}</td>
                                 <td><strong>{{ post.title }}</strong></td>
                                 <td>{{ post.author }}</td>
@@ -50,6 +65,13 @@
                         </tbody>
                       </table>
                     </div>
+                </div>
+                <div class="panel-body"> 
+                    <dir-pagination-controls
+                        max-size="5"
+                        direction-links="true"
+                        boundary-links="true" >
+                    </dir-pagination-controls>
                 </div>
             </div>
     </div>
