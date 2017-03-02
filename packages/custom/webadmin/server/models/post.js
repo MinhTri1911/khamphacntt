@@ -17,6 +17,9 @@ var postSchema = new Schema({
         unique: true,
         required: true
     },
+    description:{
+        type: String
+    },
     content: {
         type: String,
         required: true

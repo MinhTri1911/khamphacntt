@@ -5,7 +5,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
     $rootScope.$on('$stateChangeSuccess', function() {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     });
-    $rootScope.$title = "Home";
+    $rootScope.$title = 'Home';
     var vm = this;
               
 

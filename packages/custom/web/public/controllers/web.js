@@ -90,7 +90,7 @@
         }
         
         $scope.getSearch = function(text){
-            $state.go('search', {"text": text, "page": 1, "limit": 1});
+            $state.go('search', {'text': text, 'page': 1, 'limit': 1});
             
         }
 

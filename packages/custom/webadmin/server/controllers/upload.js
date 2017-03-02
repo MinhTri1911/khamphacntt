@@ -3,7 +3,6 @@
 /**
  * Module dependencies
  */
-var mongoose = require('mongoose')
 
 exports.postUpload = function(req, res, next){
     var files = req.files;

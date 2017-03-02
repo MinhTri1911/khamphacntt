@@ -5,7 +5,6 @@
  */
 var mongoose = require('mongoose'),
     Post = mongoose.model('Post');
-var paginate = require('express-paginate');
 
 exports.getSearch = function(req, res, next){
     if (!req.query.text || req.query.text === '')

@@ -12,18 +12,18 @@ app.directive('ngPrism', [function() {
             if(!scope.source) {
                 transclude(function(clone) {
                     element.html(clone);
-                    Prism.highlightElement(element.find("code")[0]);
+                    Prism.highlightElement(element.find('code')[0]);
                 });
             } else {
                 scope.$watch(function() {return scope.source;}, function(v) {
                     if(v) {
-                        Prism.highlightElement(element.find("code")[0]);
+                        Prism.highlightElement(element.find('code')[0]);
                     }
                 });
             }
 
         },
-        template: "<code ng-bind='source'></code>"
+        template: '<code ng-bind="source"></code>'
     };
 
 }]);

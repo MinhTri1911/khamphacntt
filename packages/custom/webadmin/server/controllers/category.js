@@ -46,9 +46,7 @@ exports.update = function(req, res){
 
     Category.findOneAndUpdate(query, category, function(err) {
         if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
+            return res.json(err)
         } else {
             res.json(category);
         }

@@ -6,9 +6,9 @@ function dropzoneMultiple(){
     return function(scope, element, attrs) {
 
         var config = {
-            url : "api/uploads/files",
+            url : 'api/uploads/files',
             maxFilesize: 100,
-            paramName: "uploadfile",
+            paramName: 'uploadfile',
             maxThumbnailFilesize: 10,
             parallelUploads: 10,
             autoProcessQueue: true
@@ -52,9 +52,9 @@ function dropzone(){
     return function(scope, element, attrs) {
 
         var config = {
-            url : "api/upload/files",
+            url : 'api/upload/files',
             maxFilesize: 100,
-            paramName: "uploadfile",
+            paramName: 'uploadfile',
             maxThumbnailFilesize: 10,
             parallelUploads: 10,
             autoProcessQueue: true

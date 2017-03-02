@@ -6,7 +6,6 @@
 var mongoose = require('mongoose'),
     slug = require('slug'),
     Post = mongoose.model('Post'),
-    Series = mongoose.model('Series'),
     _ = require('lodash');
 
 exports.findAll = function(req, res){

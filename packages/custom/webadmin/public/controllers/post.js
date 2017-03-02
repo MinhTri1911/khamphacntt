@@ -23,7 +23,7 @@
             $http.get('/api/post')
                 .success(function(data){
                     $scope.posts = data;
-                    $rootScope.$title = "Danh Sách Bài Viết";
+                    $rootScope.$title = 'Danh Sách Bài Viết';
                 })
         };
 
@@ -91,7 +91,7 @@
 
         $scope.delete = function(post){
 
-            if ($window.confirm("Please confirm?")) {
+            if ($window.confirm('Please confirm?')) {
                 $http.delete('/api/post/' + post._id)
                     .success(function(data){
                         $state.transitionTo($state.current, $stateParams, {

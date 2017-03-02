@@ -3,7 +3,6 @@
 /**
  * Module dependencies
  */
-var mongoose = require('mongoose')
 var fs = require('fs');
 var path = require('path');
 var mime = require('mime');

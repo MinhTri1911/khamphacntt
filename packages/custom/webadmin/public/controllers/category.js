@@ -88,7 +88,7 @@
 
         $scope.delete = function(cate){
 
-            if ($window.confirm("Please confirm?")) {
+            if ($window.confirm('Please confirm?')) {
                 $http.delete('/api/category/' + cate._id)
                     .success(function(data){
                         $state.transitionTo($state.current, $stateParams, {

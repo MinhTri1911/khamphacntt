@@ -83,7 +83,7 @@ var tagsInput = angular.module('mean.webadmin');
  * @param {expression=} [onTagRemoved=NA] Expression to evaluate upon removing an existing tag. The removed tag is available as $tag.
  * @param {expression=} [onTagClicked=NA] Expression to evaluate upon clicking an existing tag. The clicked tag is available as $tag.
  */
-tagsInput.directive('tagsInput', ["$timeout", "$document", "$window", "$q", "tagsInputConfig", "tiUtil", function($timeout, $document, $window, $q, tagsInputConfig, tiUtil) {
+tagsInput.directive('tagsInput', ['$timeout', '$document', '$window', '$q', 'tagsInputConfig', 'tiUtil', function($timeout, $document, $window, $q, tagsInputConfig, tiUtil) {
     function TagList(options, events, onTagAdding, onTagRemoving) {
         var self = {}, getTagText, setTagText, canAddTag, canRemoveTag;
 
@@ -206,7 +206,7 @@ tagsInput.directive('tagsInput', ["$timeout", "$document", "$window", "$q", "tag
         replace: false,
         transclude: true,
         templateUrl: 'ngTagsInput/tags-input.html',
-        controller: ["$scope", "$attrs", "$element", function($scope, $attrs, $element) {
+        controller: ['$scope', '$attrs', '$element', function($scope, $attrs, $element) {
             $scope.events = tiUtil.simplePubSub();
 
             tagsInputConfig.load('tagsInput', $scope, $attrs, {
@@ -508,7 +508,7 @@ tagsInput.directive('tagsInput', ["$timeout", "$document", "$window", "$q", "tag
  * @description
  * Represents a tag item. Used internally by the tagsInput directive.
  */
-tagsInput.directive('tiTagItem', ["tiUtil", function(tiUtil) {
+tagsInput.directive('tiTagItem', ['tiUtil', function(tiUtil) {
     return {
         restrict: 'E',
         require: '^tagsInput',
@@ -571,7 +571,7 @@ tagsInput.directive('tiTagItem', ["tiUtil", function(tiUtil) {
  *    of the evaluation must be one of the values supported by the ngClass directive (either a string, an array or an object).
  *    See https://docs.angularjs.org/api/ng/directive/ngClass for more information.
  */
-tagsInput.directive('autoComplete', ["$document", "$timeout", "$sce", "$q", "tagsInputConfig", "tiUtil", function($document, $timeout, $sce, $q, tagsInputConfig, tiUtil) {
+tagsInput.directive('autoComplete', ['$document', '$timeout', '$sce', '$q', 'tagsInputConfig', 'tiUtil', function($document, $timeout, $sce, $q, tagsInputConfig, tiUtil) {
     function SuggestionList(loadFn, options, events) {
         var self = {}, getDifference, lastPromise, getTagId;
 
@@ -680,7 +680,7 @@ tagsInput.directive('autoComplete', ["$document", "$timeout", "$sce", "$q", "tag
             matchClass: '&'
         },
         templateUrl: 'ngTagsInput/auto-complete.html',
-        controller: ["$scope", "$element", "$attrs", function($scope, $element, $attrs) {
+        controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
             $scope.events = tiUtil.simplePubSub();
 
             tagsInputConfig.load('autoComplete', $scope, $attrs, {
@@ -827,7 +827,7 @@ tagsInput.directive('autoComplete', ["$document", "$timeout", "$sce", "$q", "tag
  * @description
  * Represents an autocomplete match. Used internally by the autoComplete directive.
  */
-tagsInput.directive('tiAutocompleteMatch', ["$sce", "tiUtil", function($sce, tiUtil) {
+tagsInput.directive('tiAutocompleteMatch', ['$sce', 'tiUtil', function($sce, tiUtil) {
     return {
         restrict: 'E',
         require: '^autoComplete',
@@ -881,7 +881,7 @@ tagsInput.directive('tiTranscludeAppend', function() {
  * @description
  * Automatically sets the input's width so its content is always visible. Used internally by tagsInput directive.
  */
-tagsInput.directive('tiAutosize', ["tagsInputConfig", function(tagsInputConfig) {
+tagsInput.directive('tiAutosize', ['tagsInputConfig', function(tagsInputConfig) {
     return {
         restrict: 'A',
         require: 'ngModel',
@@ -1004,7 +1004,7 @@ tagsInput.provider('tagsInputConfig', function() {
         return this;
     };
 
-    this.$get = ["$interpolate", function($interpolate) {
+    this.$get = ['$interpolate', function($interpolate) {
         var converters = {};
         converters[String] = function(value) { return value; };
         converters[Number] = function(value) { return parseInt(value, 10); };
@@ -1061,7 +1061,7 @@ tagsInput.provider('tagsInputConfig', function() {
  * @description
  * Helper methods used internally by the directive. Should not be called directly from user code.
  */
-tagsInput.factory('tiUtil', ["$timeout", "$q", function($timeout, $q) {
+tagsInput.factory('tiUtil', ['$timeout', '$q', function($timeout, $q) {
     var self = {};
 
     self.debounce = function(fn, delay) {
@@ -1183,21 +1183,21 @@ tagsInput.factory('tiUtil', ["$timeout", "$q", function($timeout, $q) {
 }]);
 
 /* HTML templates */
-tagsInput.run(["$templateCache", function($templateCache) {
+tagsInput.run(['$templateCache', function($templateCache) {
     $templateCache.put('ngTagsInput/tags-input.html',
-    "<div class=\"host\" tabindex=\"-1\" ng-click=\"eventHandlers.host.click()\" ti-transclude-append><div class=\"tags\" ng-class=\"{focused: hasFocus}\"><ul class=\"tag-list\"><li class=\"tag-item\" ng-repeat=\"tag in tagList.items track by track(tag)\" ng-class=\"getTagClass(tag, $index)\" ng-click=\"eventHandlers.tag.click(tag)\"><ti-tag-item scope=\"templateScope\" data=\"::tag\"></ti-tag-item></li></ul><input class=\"input\" autocomplete=\"off\" ng-model=\"newTag.text\" ng-model-options=\"{getterSetter: true}\" ng-keydown=\"eventHandlers.input.keydown($event)\" ng-focus=\"eventHandlers.input.focus($event)\" ng-blur=\"eventHandlers.input.blur($event)\" ng-paste=\"eventHandlers.input.paste($event)\" ng-trim=\"false\" ng-class=\"{'invalid-tag': newTag.invalid}\" ng-disabled=\"disabled\" ti-bind-attrs=\"{type: options.type, placeholder: options.placeholder, tabindex: options.tabindex, spellcheck: options.spellcheck}\" ti-autosize></div></div>"
+    '<div class=\'host\' tabindex=\'-1\' ng-click=\'eventHandlers.host.click()\' ti-transclude-append><div class=\'tags\' ng-class=\'{focused: hasFocus}\'><ul class=\'tag-list\'><li class=\'tag-item\' ng-repeat=\'tag in tagList.items track by track(tag)\' ng-class=\'getTagClass(tag, $index)\' ng-click=\'eventHandlers.tag.click(tag)\'><ti-tag-item scope=\'templateScope\' data=\'::tag\'></ti-tag-item></li></ul><input class=\'input\' autocomplete=\'off\' ng-model=\'newTag.text\' ng-model-options=\'{getterSetter: true}\' ng-keydown=\'eventHandlers.input.keydown($event)\' ng-focus=\'eventHandlers.input.focus($event)\' ng-blur=\'eventHandlers.input.blur($event)\' ng-paste=\'eventHandlers.input.paste($event)\' ng-trim=\'false\' ng-class=\'{"invalid-tag": newTag.invalid}\' ng-disabled=\'disabled\' ti-bind-attrs=\'{type: options.type, placeholder: options.placeholder, tabindex: options.tabindex, spellcheck: options.spellcheck}\' ti-autosize></div></div>'
   );
 
   $templateCache.put('ngTagsInput/tag-item.html',
-    "<span ng-bind=\"$getDisplayText()\"></span> <a class=\"remove-button\" ng-click=\"$removeTag()\" ng-bind=\"::$$removeTagSymbol\"></a>"
+    '<span ng-bind=\'$getDisplayText()\'></span> <a class=\'remove-button\' ng-click=\'$removeTag()\' ng-bind=\'::$$removeTagSymbol\'></a>'
   );
 
   $templateCache.put('ngTagsInput/auto-complete.html',
-    "<div class=\"autocomplete\" ng-if=\"suggestionList.visible\"><ul class=\"suggestion-list\"><li class=\"suggestion-item\" ng-repeat=\"item in suggestionList.items track by track(item)\" ng-class=\"getSuggestionClass(item, $index)\" ng-click=\"addSuggestionByIndex($index)\" ng-mouseenter=\"suggestionList.select($index)\"><ti-autocomplete-match scope=\"templateScope\" data=\"::item\"></ti-autocomplete-match></li></ul></div>"
+    '<div class=\'autocomplete\' ng-if=\'suggestionList.visible\'><ul class=\'suggestion-list\'><li class=\'suggestion-item\' ng-repeat=\'item in suggestionList.items track by track(item)\' ng-class=\'getSuggestionClass(item, $index)\' ng-click=\'addSuggestionByIndex($index)\' ng-mouseenter=\'suggestionList.select($index)\'><ti-autocomplete-match scope=\'templateScope\' data=\'::item\'></ti-autocomplete-match></li></ul></div>'
   );
 
   $templateCache.put('ngTagsInput/auto-complete-match.html',
-    "<span ng-bind-html=\"$highlight($getDisplayText())\"></span>"
+    '<span ng-bind-html=\'$highlight($getDisplayText())\'></span>'
   );
 }]);
 
