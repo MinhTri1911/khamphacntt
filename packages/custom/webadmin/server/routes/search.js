@@ -12,18 +12,8 @@
 
         app.use(paginate.middleware(10, 50));
         app.get('/api/search', search.getSearch);
-
-        // app.post('/api/post', post.create);
-
-        // app.get('/api/post/:id', post.edit);
-
-        // app.put('/api/post/:id', post.update);
-        
-        // app.delete('/api/post/:id', post.delete);
-
-        // app.get('/api/post/category/:category_id', post.getPostByCategory);
-
-        // app.get('/api/post/series/:news_series_id', post.getPostBySeries);
+        app.get('/api/post/category/paginate/:category_id', search.getPostByCategoryPagination);
+        app.get('/api/post/series/paginate/:news_series_id', search.getPostBySeriesPagination)
 
     };
 })();

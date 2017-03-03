@@ -14,6 +14,15 @@
                 });
 
                 return deferred.promise;
+            },
+            getPostBySeriesPagination: function(news_series_id, page, limit){
+                var deferred = $q.defer();
+                $http.get('/api/post/series/paginate/' + news_series_id + '?page=' + (page ? page : '1') + '&limit=' + (limit ? limit : '10')).success(function (response) {
+                deferred.resolve(response);
+                }).error(function (response) {
+                deferred.reject(response);
+                });
+                return deferred.promise;
             }
         };
     }

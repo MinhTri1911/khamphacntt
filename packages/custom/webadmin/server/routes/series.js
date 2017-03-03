@@ -19,5 +19,7 @@
         
         app.delete('/api/series/:id', series.delete);
 
+        app.get('/api/series/slug/:slug', series.getSeriesBySlug);
+
     };
 })();

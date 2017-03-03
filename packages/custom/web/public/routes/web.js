@@ -21,7 +21,7 @@
             url: '/article/:slug',
             templateUrl: 'web/views/detailpost.html'
         }).state('series post',{
-            url: '/series/:id',
+            url: '/series/:slug',
             templateUrl: 'web/views/series.html'
         }).state('search', {
             url: '/search?:text&:page&:limit',

@@ -4,6 +4,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
+    slug = require('slug'),
     Series = mongoose.model('Series');
 
 exports.findAll = function(req, res){
@@ -38,7 +39,7 @@ exports.update = function(req, res){
     var data = {
         $set: req.body,
     }
-    //console.log(data);
+    data.slug = slug(req.body.name)
 
     Series.findOneAndUpdate(query, data, function(err, updated){
         if(err){
@@ -52,4 +53,11 @@ exports.delete = function(req, res){
         if(err) res.send(err)
         res.json(deleted);
     });
+}
+
+exports.getSeriesBySlug = function(req, res){
+    Series.findOne({slug: req.params.slug}, function(err, data){
+        if(err) res.json(err)
+        res.json(data);
+    })
 }

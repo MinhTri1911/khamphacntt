@@ -36,40 +36,134 @@
 
         $scope.getPostsByCategory = function(){
             
-            //console.log($stateParams)
             getCategory.getCategory($stateParams.slug).then(function(response){
                 var category = response;
-                $rootScope.$title = 'Bài viết về ' + category.name
+                $scope.isLoading = true;
+                getPostByCategory.getPostByCategoryPagination(category._id,1,5).then(function(response){
+                    
+                    $scope.pageByCate = response.page;
+                    $scope.pagesByCate = response.pages;
+                    $scope.limit = response.limit;
+                    $scope.category_id = category._id;
+                    $scope.totalByCate = response.total;
 
-                getPostByCategory.getPostByCategory(category._id).then(function(response){
-                    var posts = response;
-                    angular.forEach(posts, function(value, key) {
+                    var postsByCate = response.data;
+                    angular.forEach(postsByCate, function(value, key) {
                         getSeries.getSeries(value.news_series_id).then(function(response){
                             value.series.push(response);
                         })
                     }, this);
-                    $scope.posts = response;
+                    $scope.postsByCate = postsByCate;
+                }, function (error) {
+                    console.log('error', error);
+                }).finally(function () {
+                    $scope.isLoading = false;
+                });
+            });
 
-                    // console.log($scope.posts)
-                })
-            })
+            //console.log($stateParams)
+            // getCategory.getCategory($stateParams.slug).then(function(response){
+            //     var category = response;
+            //     $rootScope.$title = 'Bài viết về ' + category.name
+
+            //     getPostByCategory.getPostByCategory(category._id).then(function(response){
+            //         var posts = response;
+            //         angular.forEach(posts, function(value, key) {
+            //             getSeries.getSeries(value.news_series_id).then(function(response){
+            //                 value.series.push(response);
+            //             })
+            //         }, this);
+            //         $scope.posts = response;
+
+            //         // console.log($scope.posts)
+            //     })
+            // })
+        }
+        $scope.loadMoreByCategory = function(){
+            if ($scope.postsByCate.length >= $scope.totalByCate) return;
+            $scope.isLoading = true;
+            getPostByCategory.getPostByCategoryPagination($scope.category_id, $scope.pageByCate + 1, $scope.limit).then(function(response){
+                $scope.pageByCate = response.page;
+                $scope.pagesByCate = response.pages;
+                $scope.limit = response.limit;
+                $scope.totalByCate = response.total;
+
+                var postsByCate = response.data;
+                angular.forEach(postsByCate, function(value, key) {
+                    getSeries.getSeries(value.news_series_id).then(function(response){
+                        value.series.push(response);
+                    })
+                }, this);
+
+                $scope.postsByCate = [].concat($scope.postsByCate, postsByCate);
+            }, function (error) {
+                console.log('error', error);
+            }).finally(function () {
+                $scope.isLoading = false;
+            });
         }
 
         $scope.getPostBySeries = function(){
-            getSeries.getSeries($stateParams.id).then(function(response){
+            getSeries.getSeriesBySlug($stateParams.slug).then(function(response){
                 var series = response;
-                $rootScope.$title = 'Bài viết về ' + series.name
-                getPostBySeries.getPostBySeries(series._id).then(function(response){
-                    var posts = response;
-                    angular.forEach(posts, function(value, key){
-                        getSeries.getSeries(value.news_series_id).then(function(response){
-                            value.series.push(response);
-                        })
-                    }, this);
+                $scope.series = series;
+                $scope.isLoading = true;
+                getPostBySeries.getPostBySeriesPagination(series._id,1,5).then(function(response){
                     
-                    $scope.posts = posts;
-                })
+                    $scope.pageBySeries = response.page;
+                    $scope.pagesBySeries = response.pages;
+                    $scope.limit = response.limit;
+                    $scope.news_series_id = series._id;
+                    $scope.totalBySeries = response.total;
+
+                    var postsBySeries = response.data;
+                    angular.forEach(postsBySeries, function(value, key) {
+                        value.series.push(series);
+                    }, this);
+                    $scope.postsBySeries = postsBySeries;
+                }, function (error) {
+                    console.log('error', error);
+                }).finally(function () {
+                    $scope.isLoading = false;
+                });
             })
+
+            // getSeries.getSeries($stateParams.slug).then(function(response){
+            //     var series = response;
+            //     $rootScope.$title = 'Bài viết về ' + series.name
+            //     getPostBySeries.getPostBySeries(series._id).then(function(response){
+            //         var posts = response;
+            //         angular.forEach(posts, function(value, key){
+            //             getSeries.getSeries(value.news_series_id).then(function(response){
+            //                 value.series.push(response);
+            //             })
+            //         }, this);
+                    
+            //         $scope.posts = posts;
+            //     })
+            // })
+        }
+
+        $scope.loadMoreBySeries = function(){
+            if ($scope.postsBySeries.length >= $scope.totalBySeries) return;
+            $scope.isLoading = true;
+            getPostBySeries.getPostBySeriesPagination($scope.news_series_id, $scope.pageBySeries + 1, $scope.limit).then(function(response){
+                $scope.pageBySeries = response.page;
+                $scope.pagesBySeries = response.pages;
+                $scope.limit = response.limit;
+                $scope.totalBySeries = response.total;
+
+                var postsBySeries = response.data;
+                angular.forEach(postsBySeries, function(value, key) {
+                    value.series.push($scope.series);
+                }, this);
+
+                $scope.postsBySeries = [].concat($scope.postsBySeries, postsBySeries);
+            }, function (error) {
+                console.log('error', error);
+            }).finally(function () {
+                $scope.isLoading = false;
+            });
         }
 
         $scope.getArticle = function(){
@@ -90,7 +184,7 @@
         }
         
         $scope.getSearch = function(text){
-            $state.go('search', {'text': text, 'page': 1, 'limit': 1});
+            $state.go('search', {'text': text, 'page': 1, 'limit': 5});
             
         }
 

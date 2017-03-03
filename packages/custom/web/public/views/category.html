@@ -3,9 +3,9 @@
 			<div class="col-xs-12 col-sm-6 col-md-8">
 				
 				
-				<article ng-if="posts" ng-repeat="item in posts">
+				<article ng-if="postsByCate" ng-repeat="item in postsByCate">
 					<section class="animated fadeInUp">
-						<img class="bieutuong" src="/bower_components/lib/img/bieutuongpng.png" height="50" width="50" alt="">
+						<img class="bieutuong" ng-src="/api/files/uploads/{{item.image}}" height="50" width="50" alt="">
 						<div class="header-article">
 							<h1>
 								<a ui-sref="article({slug:item.slug})" href="#">{{ item.title }}  </a>
@@ -16,17 +16,19 @@
 						</div>
 					</section>
 					<section class="clearfix animated fadeInUp">
-						<img class="hinhdaidien" ng-src="/api/files/uploads/{{item.image}}" height="124px" width="125px" alt="">
-						<p class="chitiet">
-							Chào mừng tất cả các bạn đến với khamphacntt.com.vn, đây là bài đầu tiên trong loạt bài series hướng dẫn xây dựng trang tin
-							tức bằng PHP. Series này sẽ hướng các bạn cách để mà xây dựng một trang tin tức hoàn chỉnh. Series này yêu cầu các
-							bạn phải có kiến thức cơ bản về một số ngôn ngữ như PHP OOP, HTML, CSS, Javascript, ...
-						</p>
+							<div bind-html-compile="item.description">
+                    		</div>
+
 					</section>
 				</article>
 
-				<div ng-if=" posts.length == 0 ">Empty</div>
-				THỰC HIỆN PHÂN TRANG CÁC BÀI VIẾT
+				<div ng-if=" postsByCate.length == 0 ">Empty</div>
+				<nav ng-show="isLoading">
+					<img src="/meanStarter/assets/img/loader.gif" alt="">
+				</nav>
+				<button ng-cloak ng-hide="isLoading || postsByCate.length==0" type="button" class="btn search btn-primary btn-lg btn-block" ng-disabled="(postsByCate.length) >= totalByCate" data-ng-click="loadMoreByCategory()">
+					LOAD MORE ({{postsByCate.length ? postsByCate.length : 0}}/{{totalByCate ? totalByCate : 0}})
+				</button>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4">
 				<div class="rightBox animated fadeInUp">

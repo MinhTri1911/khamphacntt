@@ -4,6 +4,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
+    slug = require('slug'),
     Schema = mongoose.Schema;
 
 /**
@@ -21,6 +22,9 @@ var seriesSchema = new Schema({
         unique: true,
         trim: true
     },
+    slug:{
+        type: String
+    },
     category_id: {
         type: Schema.ObjectId,
         ref: 'Category',
@@ -28,4 +32,18 @@ var seriesSchema = new Schema({
     }
 });
 
-mongoose.model('Series', seriesSchema);
+seriesSchema.pre('save', function(next) {
+  this.slug = slug(this.name);
+  return next();
+});
+
+seriesSchema.pre('update', function(next) {
+    this.slug = slug(this.name);
+    return next();
+});
+
+try {
+  mongoose.model('Series')
+} catch (error) {
+  mongoose.model('Series', seriesSchema);
+}
